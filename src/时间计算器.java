@@ -3,15 +3,24 @@ import java.util.*;
 
 public class 时间计算器 {
     public static void main(String[] args) {
+
+        System.out.println("输入你想要计算的日期，格式(yyyy MM dd):");
+
+        Scanner scanner = new Scanner(System.in);
+        String data = scanner.nextLine();
+
+        ClockDemo(data);
+
+    }
+
+    public static void ClockDemo(String data) {
+        String[] dates = data.split(" ");
+        int Year = Integer.parseInt(dates[0]);
+        int Month = Integer.parseInt(dates[1]) - 1;
+        int Day = Integer.parseInt(dates[2]);
+
         Calendar nowDate = Calendar.getInstance(TimeZone.getTimeZone("GMT+8"), Locale.CHINA);
         Calendar setDate = Calendar.getInstance();
-
-        Scanner scan = new Scanner(System.in);
-        System.out.println("输入日期格式(yyyy MM dd):");
-        int Year = scan.nextInt();
-        int Month = scan.nextInt() - 1;
-        int Day = scan.nextInt();
-
         setDate.set(Year, Month, Day, 0, 0, 0);
 
         Date nowD = nowDate.getTime();
@@ -48,7 +57,6 @@ public class 时间计算器 {
         } else {
             System.out.println("还剩" + times[0] + "天" + times[1] + "小时" + times[2] + "分钟" + times[3] + "秒");
         }
-
     }
 
 
