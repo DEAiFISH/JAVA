@@ -1,6 +1,4 @@
-package BANK;
-
-import java.awt.*;
+package Bank.oldBank;
 
 public class BANK_Test {
     public static void main(String[] args) {

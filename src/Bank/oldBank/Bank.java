@@ -1,4 +1,4 @@
-package BANK;
+package Bank.oldBank;
 
 import java.util.Scanner;
 
@@ -15,12 +15,13 @@ class Bank {
 
     private static Bank instance = null;
 
-    private Bank(){
+    private Bank() {
         customers = new Customer[100];
         depositRate = 0.001;
     }
-    public static Bank getInstance(){
-        if(instance == null) {
+
+    public static Bank getInstance() {
+        if (instance == null) {
             synchronized (Bank.class) {
                 if (instance == null) {
                     instance = new Bank();
@@ -34,26 +35,29 @@ class Bank {
     public static int getMinBalance() {
         return minBalance;
     }
+
     //添加客户
-    public void addCustomer(String f,String l,int balance){
-        Customer cust = new Customer(f,l,balance);
-        if(cust.getAccount() == null){
+    public void addCustomer(String f, String l, int balance) {
+        Customer cust = new Customer(f, l, balance);
+        if (cust.getAccount() == null) {
             return;
         }
         customers[numberOfCustomer++] = cust;
     }
+
     //获取客户的个数
-    public int getNumberOfCustomer(){
+    public int getNumberOfCustomer() {
         return numberOfCustomer;
     }
+
     //获取指定客户的信息
-    public Customer getCustomer(){
+    public Customer getCustomer() {
         Scanner scan = new Scanner(System.in);
         System.out.println("请输入" + (numberOfCustomer - 1) + "以内的数字。 (输入-1退出）");
         int index = scan.nextInt();
         boolean isFlag = true;
-        while(index != -1){
-            if(index >= 0 && index < numberOfCustomer){
+        while (index != -1) {
+            if (index >= 0 && index < numberOfCustomer) {
                 return customers[index];
             }
             System.out.println("请重新输入。。。");

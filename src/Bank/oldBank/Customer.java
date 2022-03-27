@@ -1,4 +1,4 @@
-package BANK;
+package Bank.oldBank;
 
 import java.util.Random;
 
@@ -6,20 +6,21 @@ public class Customer {
     private String firstName;
     private String lastName;
     private Account account;
-
-    public int getId() {
-        return id;
-    }
-
     private int id;
 
 
-    public Customer(int balance){
+    public int getid() {
+        return id;
+    }
+
+
+    public Customer(int balance) {
         Random rand = new Random();
         id = rand.nextInt(100000) + 10000;
         setAccount(new Account(balance));
     }
-    public Customer(String f,String l,int balance){
+
+    public Customer(String f, String l, int balance) {
         this(balance);
         firstName = f;
         lastName = l;
@@ -28,6 +29,7 @@ public class Customer {
     public String getFirstName() {
         return firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
@@ -38,7 +40,7 @@ public class Customer {
 
     //初始化余额
     public void setAccount(Account account) {
-        if(account.getBalance() >= Bank.getMinBalance()){
+        if (account.getBalance() >= Bank.getMinBalance()) {
             System.out.println("创建成功！");
             this.account = account;
             return;

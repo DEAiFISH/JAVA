@@ -1,4 +1,4 @@
-package BANK;
+package Bank.newBank.domain;
 
 public class Account {
     private double balance;
