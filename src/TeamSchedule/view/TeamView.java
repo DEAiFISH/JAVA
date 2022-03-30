@@ -118,15 +118,15 @@ public class TeamView {
     private void deleteMember() {
         if (getTeam()) {
 
-            System.out.println("请输入要删除队员的TID：");
-            int TID = TSUtility.readInt();
+            System.out.println("请输入要删除队员的ID：");
+            int ID = TSUtility.readInt();
 
             System.out.print("确认是否删除(Y/N)：");
             char delOrNot = readConfirmSelection();
 
             if (delOrNot == 'Y') {
                 try {
-                    teamSvc.removeMember(TID);
+                    teamSvc.removeMember(ID);
                     System.out.println("删除成功。");
                 } catch (TeamException e) {
                     System.out.println(e.getMessage());

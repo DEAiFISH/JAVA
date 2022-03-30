@@ -16,7 +16,6 @@ public class TeamService {
     //用来保存团队中的各成员对象
     private ArrayList<Programmer> teamListService = new ArrayList<>();
     //记录团队的实际人数
-    private int total = teamListService.size();
 
     private static TeamService instance = null;
 
@@ -41,7 +40,7 @@ public class TeamService {
     }
 
     public int getTotal() {
-        return total;
+        return teamListService.size();
     }
 
 
@@ -62,7 +61,7 @@ public class TeamService {
      * @throws TeamException
      */
     public void addMember(Employee employee) throws TeamException {
-        if (total == MAX_MEMBER) {
+        if (teamListService.size() == MAX_MEMBER) {
             throw new TeamException("成员已满，无法添加\n");
         }
         if (!(employee instanceof Programmer)) {
@@ -130,18 +129,20 @@ public class TeamService {
     /**
      * 删除团队中指定TID的队员
      *
-     * @param TID
+     * @param ID
      * @throws TeamException
      */
-    public void removeMember(int TID) throws TeamException {
+    public void removeMember(int ID) throws TeamException {
         int i;
-        for (i = 0; i < total; i++) {
+        for (i = 0; i < teamListService.size(); i++) {
             Programmer programmer = teamListService.get(i);
-            if(programmer.getId() == TID){
+            if(programmer.getId() == ID){
                 programmer.setStatus(Status.FREE);
+                teamListService.remove(i);
+                return;
             }
         }
-        if (i == total) {
+        if (i == teamListService.size()) {
             throw new TeamException("团队中没有该成员，删除失败");
         }
     }
@@ -155,6 +156,7 @@ public class TeamService {
                 if(programmer.getStatus() == Status.BUSY){
                     programmer.setTID(counter++);
                     teamListService.add(programmer);
+
                 }
             }
         }
