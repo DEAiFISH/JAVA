@@ -1,6 +1,12 @@
 package TeamSchedule.service;
 
-import TeamSchedule.domain.*;
+
+import TeamSchedule.domain.Architect;
+import TeamSchedule.domain.Designer;
+import TeamSchedule.domain.Employee;
+import TeamSchedule.domain.Programmer;
+
+import java.util.ArrayList;
 
 public class TeamService {
     //用来为开发团队新增成员自动生成团队中的唯一ID
@@ -8,9 +14,27 @@ public class TeamService {
     //最大团队成员数
     private final int MAX_MEMBER = 5;
     //用来保存团队中的各成员对象
-    private Programmer[] team = new Programmer[MAX_MEMBER];
+    private ArrayList<Programmer> teamListService = new ArrayList<>();
     //记录团队的实际人数
-    private int total = 0;
+    private int total = teamListService.size();
+
+    private static TeamService instance = null;
+
+    private TeamService(){
+        initialize();
+    }
+
+    public static TeamService getInstance(){
+        if(instance == null){
+            synchronized (TeamService.class){
+                if(instance == null){
+                    instance = new TeamService();
+                }
+            }
+        }
+        return instance;
+    }
+
 
     public int getCounter() {
         return counter;
@@ -26,12 +50,8 @@ public class TeamService {
      *
      * @return
      */
-    public Programmer[] getTeam() {
-        Programmer[] team = new Programmer[total];
-        for (int i = 0; i < team.length; i++) {
-            team[i] = this.team[i];
-        }
-        return team;
+    public ArrayList getTeam() {
+        return teamListService;
     }
 
 
@@ -53,22 +73,18 @@ public class TeamService {
         }
 
         Programmer programmer = (Programmer) employee;
-//        if ("BUSH".equals(programmer.getStatus())) {
-//            throw new TeamException("该成员已是某团队的队员\n");
-//        } else if ("VOCATION".equals(programmer.getStatus())) {
-//            throw new TeamException("该成员正在休假\n");
-//        }
-        switch (programmer.getStatus()){
+
+        switch (programmer.getStatus()) {
             case BUSY -> throw new TeamException("该成员已是某团队的队员\n");
             case VOCATION -> throw new TeamException("该成员正在休假\n");
         }
 
         //获取已有的架构师，设计师，程序员的人数
         int numOfArch = 0, numOfDes = 0, numOfPro = 0;
-        for (int i = 0; i < total; i++) {
-            if (team[i] instanceof Architect) {
+        for (Employee e : teamListService) {
+            if (e instanceof Architect) {
                 numOfArch++;
-            } else if (team[i] instanceof Designer) {
+            } else if (e instanceof Designer) {
                 numOfDes++;
             } else {
                 numOfPro++;
@@ -79,22 +95,21 @@ public class TeamService {
             if (numOfArch >= 1) {
                 throw new TeamException("团队中最多只能有一名架构师");
             }
-        }
-        if (programmer instanceof Designer) {
+        } else if (programmer instanceof Designer) {
             if (numOfDes >= 2) {
                 throw new TeamException("团队中最多只能有两名设计师");
             }
-        }
-        if (programmer instanceof Programmer) {
+        } else {
             if (numOfPro >= 3) {
                 throw new TeamException("团队中最多只能有三名程序员");
             }
         }
 
         //将programmeri添加到团队中
-        team[total++] = programmer;
+        teamListService.add(programmer);
         programmer.setStatus(Status.BUSY);
         programmer.setTID(counter++);
+
     }
 
     /**
@@ -104,8 +119,8 @@ public class TeamService {
      * @return
      */
     private boolean isExist(Employee employee) {
-        for (int i = 0; i < total; i++) {
-            if (team[i].getId() == employee.getId()) {
+        for (Employee e : teamListService) {
+            if (e.getId() == employee.getId()) {
                 return true;
             }
         }
@@ -121,17 +136,27 @@ public class TeamService {
     public void removeMember(int TID) throws TeamException {
         int i;
         for (i = 0; i < total; i++) {
-            if (team[i].getTID() == TID) {
-                team[i].setStatus(Status.FREE);
-                break;
+            Programmer programmer = teamListService.get(i);
+            if(programmer.getId() == TID){
+                programmer.setStatus(Status.FREE);
             }
         }
         if (i == total) {
             throw new TeamException("团队中没有该成员，删除失败");
         }
-        for (int j = i; j < total - 1; j++) {
-            team[j] = team[j + 1];
+    }
+
+    private void initialize(){
+        NameListService nameListService = NameListService.getInstance();
+        ArrayList<Employee> employees = nameListService.getEmployee();
+        for (Employee employee: employees) {
+            if(employee instanceof Programmer){
+                Programmer programmer = (Programmer) employee;
+                if(programmer.getStatus() == Status.BUSY){
+                    programmer.setTID(counter++);
+                    teamListService.add(programmer);
+                }
+            }
         }
-        team[--total] = null;
     }
 }

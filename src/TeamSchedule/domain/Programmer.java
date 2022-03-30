@@ -1,10 +1,11 @@
 package TeamSchedule.domain;
 
+
 import TeamSchedule.service.Status;
 
 public class Programmer extends Employee {
     //状态
-    private Status status = Status.FREE;
+    private Status status;
     //设备
     private Equipment equipment;
     //团队ID
@@ -14,8 +15,9 @@ public class Programmer extends Employee {
         super();
     }
 
-    public Programmer(int id, String name, int age, double salary, Equipment equipment) {
-        super(id, name, age, salary);
+    public Programmer(int numOfPosition, int id, String name, int age, double salary, Status status, Equipment equipment) {
+        super(numOfPosition, id, name, age, salary);
+        this.status = status;
         this.equipment = equipment;
     }
 
@@ -27,6 +29,11 @@ public class Programmer extends Employee {
         this.TID = TID;
     }
 
+    /**
+     * 获取状态
+     *
+     * @return
+     */
     public Status getStatus() {
         return status;
     }
@@ -48,6 +55,11 @@ public class Programmer extends Employee {
         return super.getDetails() + "\t程序员\t" + status + "\t\t\t\t\t\t" + equipment.getDescription();
     }
 
+    /**
+     * 获取团队详细信息
+     *
+     * @return
+     */
     public String getDetailsForTeam() {
         return TID + "/" + this.getId() + "\t\t" + this.getName() + "\t" + this.getAge() + "\t\t" + this.getSalary() + "\t\t程序员";
     }

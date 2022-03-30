@@ -1,17 +1,21 @@
 package TeamSchedule.domain;
 
-public class PC implements Equipment{
+public class PC implements Equipment {
+    private int numOfType;
     private String model;
     private String display;
 
     public PC() {
         super();
     }
-    public PC(String model, String display){
+
+    public PC(int numOfType, String model, String display) {
         super();
+        this.numOfType = numOfType;
         this.model = model;
         this.display = display;
     }
+
     public String getModel() {
         return model;
     }
@@ -28,9 +32,20 @@ public class PC implements Equipment{
         this.display = display;
     }
 
+    public int getNumOfType() {
+        return numOfType;
+    }
+
+    public void setNumOfType(int type) {
+        this.numOfType = type;
+    }
 
     @Override
     public String getDescription() {
         return model + "(" + display + ")";
+    }
+
+    public String getDescribe() {
+        return "21," + getModel() + "," + getDisplay();
     }
 }

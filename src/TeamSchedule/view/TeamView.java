@@ -1,11 +1,21 @@
 package TeamSchedule.view;
 
-import TeamSchedule.domain.*;
-import TeamSchedule.service.*;
+
+import TeamSchedule.domain.Employee;
+import TeamSchedule.domain.Programmer;
+import TeamSchedule.service.NameListService;
+import TeamSchedule.service.TeamException;
+import TeamSchedule.service.TeamService;
+
+import java.util.ArrayList;
+
+import static TeamSchedule.service.Data.saveFlag;
+import static TeamSchedule.view.TSUtility.readConfirmSelection;
+import static TeamSchedule.view.TSUtility.readReturn;
 
 public class TeamView {
-    private NameListService listSvc = new NameListService();
-    private TeamService teamSvc = new TeamService();
+    private NameListService listSvc = NameListService.getInstance();
+    private TeamService teamSvc = TeamService.getInstance();
 
     TeamView() {
     }
@@ -34,8 +44,9 @@ public class TeamView {
                     break;
                 case '4':
                     System.out.println("是否要退出。。。（Y/N）\n");
-                    char isExit = TSUtility.readConfirmSelection();
+                    char isExit = readConfirmSelection();
                     if (isExit == 'Y') {
+                        saveFile();
                         System.exit(1);
                     }
             }
@@ -48,9 +59,9 @@ public class TeamView {
     private void listAllEmployees() {
         System.out.println("\"-------------------------------开发团队调度软件--------------------------------\\n\"");
         System.out.println("ID\t姓名\t\t年龄\t\t工资\t\t\t职位\t\t状态\t\t奖金\t\t\t股票\t\t领用设备");
-        Employee[] employees = listSvc.getAllEmloyees();
-        for (int i = 0; i < employees.length; i++) {
-            System.out.println(employees[i]);
+        ArrayList<Employee> employees = listSvc.getAllEmloyees();
+        for (Employee employee : employees) {
+            System.out.println(employee);
         }
     }
 
@@ -61,17 +72,18 @@ public class TeamView {
      */
     private boolean getTeam() {
         System.out.println("--------------------团队成员列表---------------------");
-        Programmer[] employees = teamSvc.getTeam();
+        ArrayList<Programmer> programmers = teamSvc.getTeam();
         try {
-            if (employees.length == 0) {
+            if (programmers.size() == 0) {
                 throw new TeamException("开发团队目前没有成员!");
             }
 
             System.out.println("TID/ID\t姓名\t\t年龄\t\t工资\t\t\t职位");
-            for (Programmer employee : employees) {
-                System.out.println(employee.getDetailsForTeam());
+            for (Programmer programmer : programmers) {
+                System.out.println(programmer.getDetailsForTeam());
             }
             System.out.println("-----------------------------------------------------");
+            readReturn();
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -91,11 +103,13 @@ public class TeamView {
         try {
             employee = listSvc.getEmployee(id);
             teamSvc.addMember(employee);
+            saveFlag = true;
             System.out.println("添加成功。");
         } catch (TeamException e) {
             System.out.println(e.getMessage());
         }
-        TSUtility.readReturn();
+
+        readReturn();
     }
 
     /**
@@ -108,7 +122,7 @@ public class TeamView {
             int TID = TSUtility.readInt();
 
             System.out.print("确认是否删除(Y/N)：");
-            char delOrNot = TSUtility.readConfirmSelection();
+            char delOrNot = readConfirmSelection();
 
             if (delOrNot == 'Y') {
                 try {
@@ -120,9 +134,21 @@ public class TeamView {
             }
         }
 
-        TSUtility.readReturn();
+        saveFlag = true;
+
+        readReturn();
     }
 
+    public void saveFile(){
+        if(saveFlag){
+            System.out.println("是否需要保存修改? (Y/N)");
+            char key = readConfirmSelection();
+            if (key == 'Y') {
+                listSvc.saveToLocal();
+                return;
+            }
+        }
+    }
 
     public static void main(String[] args) {
         TeamView teamView = new TeamView();

@@ -1,12 +1,14 @@
 package TeamSchedule.domain;
 
-public class NoteBook implements Equipment{
+public class NoteBook implements Equipment {
     //型号
+    private int numOfType;
     private String model;
     private double price;
 
-    public NoteBook(String model, double price){
+    public NoteBook(int numOfType, String model, double price) {
         super();
+        this.numOfType = numOfType;
         this.model = model;
         this.price = price;
     }
@@ -27,8 +29,20 @@ public class NoteBook implements Equipment{
         this.price = price;
     }
 
+    public int getNumOfType() {
+        return numOfType;
+    }
+
+    public void setNumOfType(int type) {
+        this.numOfType = type;
+    }
+
     @Override
-    public String getDescription(){
+    public String getDescription() {
         return model + "(" + price + ")";
+    }
+
+    public String getDescribe() {
+        return "22," + getModel() + "," + getPrice();
     }
 }
