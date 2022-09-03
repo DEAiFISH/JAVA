@@ -36,7 +36,7 @@ public class WindowTest2 {
 class Window1 implements Runnable {
 
     private int ticket = 100;
-    Object obj = new Object();
+//    Object obj = new Object();
 
     @Override
     public void run() {

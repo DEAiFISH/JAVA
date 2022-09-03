@@ -19,7 +19,7 @@ public class ThreadNew {
         NumThread numThread = new NumThread();
         //4、将此Callable接口实现的对象作为参数FutureTask的构造器中，创建FutureTask的对象
         FutureTask futureTask = new FutureTask(numThread);
-        //5、将FutureTask的对象作为参数传递到Thread类的构造器中，创建Thread对象，并蒂哦啊用start()
+        //5、将FutureTask的对象作为参数传递到Thread类的构造器中，创建Thread对象，并调用start()
         new Thread(futureTask).start();
         //6、获取Callable重的call方法的返回值
         try {
