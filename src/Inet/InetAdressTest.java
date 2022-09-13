@@ -38,6 +38,9 @@ public class InetAdressTest {
         }
         return "";
     }
+
+
+
     /**
      * 服务器
      */
@@ -128,7 +131,7 @@ public class InetAdressTest {
         Socket socket = null;
         OutputStream os = null;
         try {
-            socket = new Socket(InetAddress.getByName("192.168.31.156"), 8796);
+            socket = new Socket(InetAddress.getByName(getIpAddress()), 8796);
 
             os = socket.getOutputStream();
             os.write("你好服务器。。。".getBytes(StandardCharsets.UTF_8));
@@ -161,7 +164,7 @@ public class InetAdressTest {
         InputStream is = null;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {
-            socket = new Socket(InetAddress.getByName("192.168.31.156"), 8796);
+            socket = new Socket(InetAddress.getByName(getIpAddress()), 8796);
             fis = new FileInputStream("src/Inet/文章.txt");
             os = socket.getOutputStream();
 
