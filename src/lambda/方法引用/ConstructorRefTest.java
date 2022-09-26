@@ -23,7 +23,7 @@ public class ConstructorRefTest {
     //Employee的空参构造器：Employee()
     @Test
     public void test1(){
-
+ 
         Supplier<Employee> sup = new Supplier<Employee>() {
             @Override
             public Employee get() {
