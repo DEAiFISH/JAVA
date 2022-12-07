@@ -1,6 +1,6 @@
 package controller;
 
-public class Calculator{
+public class Calculator {
     public double add(double x, double y) {
         return x + y;
     }
@@ -13,7 +13,7 @@ public class Calculator{
         return x * y;
     }
 
-    public double div(double x, double y) {
+    public double div(double x, double y) throws RuntimeException {
 
         return x / y;
     }
