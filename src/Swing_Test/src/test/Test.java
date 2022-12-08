@@ -11,6 +11,7 @@ public class Test {
         CalculatorWindow calculatorWindow = new CalculatorWindow("简易计算器");
         calculatorWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         calculatorWindow.setContentPane(calculatorWindow.getPane());
+        calculatorWindow.setLocationRelativeTo(null);
         calculatorWindow.setVisible(true);
         calculatorWindow.pack();
     }

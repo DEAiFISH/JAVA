@@ -1,5 +1,6 @@
 package Swing_Test.src.controller;
 
+
 import Swing_Test.src.model.Calculator;
 import Swing_Test.src.view.CalculatorWindow;
 
@@ -32,7 +33,11 @@ public class MyMouseAdapter extends MouseAdapter {
         } else if ("+".equals(str) || "-".equals(str) || "*".equals(str) || "/".equals(str)) {
             window.getInput().setText(window.getInput().getText() + " " + str + " ");
         } else if ("=".equals(str)) {
-            window.getOutput().setText(calculator.calculate(window.getInput().getText()));
+            try {
+                window.getOutput().setText(calculator.calculate(window.getInput().getText()));
+            } catch (RuntimeException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
         } else {
             window.getOutput().setText("");
             window.getInput().setText("");
@@ -47,6 +52,6 @@ public class MyMouseAdapter extends MouseAdapter {
     @Override
     public void mouseExited(MouseEvent e) {
 
-        ((JButton) e.getSource()).setBackground(Color.BLACK);
+        ((JButton) e.getSource()).setBackground(Color.getColor("2B2D30"));
     }
 }

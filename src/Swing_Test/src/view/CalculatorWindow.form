@@ -7,22 +7,13 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="74206" class="javax.swing.JButton" binding="a1Button" default-binding="true">
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <background color="-13947600"/>
-          <text value="1"/>
-        </properties>
-      </component>
       <component id="5efea" class="javax.swing.JButton" binding="a2Button" default-binding="true">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="2"/>
         </properties>
       </component>
@@ -32,6 +23,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="3"/>
         </properties>
       </component>
@@ -41,6 +33,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="+"/>
         </properties>
       </component>
@@ -50,6 +43,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="4"/>
         </properties>
       </component>
@@ -59,6 +53,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="5"/>
         </properties>
       </component>
@@ -68,6 +63,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="6"/>
         </properties>
       </component>
@@ -77,6 +73,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="-"/>
         </properties>
       </component>
@@ -86,6 +83,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="7"/>
         </properties>
       </component>
@@ -95,6 +93,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="8"/>
         </properties>
       </component>
@@ -104,6 +103,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="9"/>
         </properties>
       </component>
@@ -113,6 +113,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="*"/>
         </properties>
       </component>
@@ -122,6 +123,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="C"/>
         </properties>
       </component>
@@ -131,6 +133,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="0"/>
         </properties>
       </component>
@@ -140,6 +143,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="="/>
         </properties>
       </component>
@@ -149,6 +153,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <opaque value="true"/>
           <text value="/"/>
         </properties>
       </component>
@@ -175,6 +180,16 @@
           <editable value="false"/>
           <enabled value="false"/>
           <text value=""/>
+        </properties>
+      </component>
+      <component id="8023" class="javax.swing.JButton" binding="a1Button">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <opaque value="true"/>
+          <text value="1"/>
         </properties>
       </component>
     </children>
