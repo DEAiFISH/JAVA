@@ -1,71 +1,67 @@
-package view;
+package Swing_Test.src.view;
 
-import listener.Monitor;
+
+import Swing_Test.src.controller.MyMouseAdapter;
 
 import javax.swing.*;
 
-public class CalculatorWindow {
-
-    private JPanel panel;
-    private JButton add;
+public class CalculatorWindow extends JFrame {
+    private MyMouseAdapter listener;
+    private JTextField output;
+    private JTextField input;
     private JButton a1Button;
-    private JButton a7Button;
-    private JButton a4Button;
     private JButton a2Button;
-    private JButton a5Button;
-    private JButton a8Button;
-    private JButton a0Button;
     private JButton a3Button;
-    private JButton a6Button;
-    private JButton a9Button;
-    private JButton button11;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
     private JButton button4;
-    private JTextField res;
-    private JTextField put;
+    private JButton a4Button;
+    private JButton a5Button;
+    private JButton a6Button;
+    private JButton button8;
+    private JButton a7Button;
+    private JButton a8Button;
+    private JButton a9Button;
+    private JButton button12;
+    private JButton cButton;
+    private JButton a0Button;
+    private JButton button15;
+    private JButton button16;
+    private JPanel pane;
+
 
     public CalculatorWindow() {
-        Monitor listener = new Monitor();
-        add.addActionListener(listener);
-        a1Button.addActionListener(listener);
-        a7Button.addActionListener(listener);
-        a4Button.addActionListener(listener);
-        a2Button.addActionListener(listener);
-        a5Button.addActionListener(listener);
-        a8Button.addActionListener(listener);
-        a0Button.addActionListener(listener);
-        a3Button.addActionListener(listener);
-        a6Button.addActionListener(listener);
-        a9Button.addActionListener(listener);
-        button11.addActionListener(listener);
-        button1.addActionListener(listener);
-        button2.addActionListener(listener);
-        button3.addActionListener(listener);
-        button4.addActionListener(listener);
+        listener = new MyMouseAdapter(this);
+        a1Button.addMouseListener(listener);
+        a2Button.addMouseListener(listener);
+        a3Button.addMouseListener(listener);
+        button4.addMouseListener(listener);
+        a4Button.addMouseListener(listener);
+        a5Button.addMouseListener(listener);
+        a6Button.addMouseListener(listener);
+        button8.addMouseListener(listener);
+        a7Button.addMouseListener(listener);
+        a8Button.addMouseListener(listener);
+        a9Button.addMouseListener(listener);
+        button12.addMouseListener(listener);
+        cButton.addMouseListener(listener);
+        a0Button.addMouseListener(listener);
+        button15.addMouseListener(listener);
+        button16.addMouseListener(listener);
     }
 
-    public JTextField getRes() {
-        return res;
+    public CalculatorWindow(String name) {
+        this();
+        this.setName(name);
     }
 
-    public JTextField getPut() {
-        return put;
+    public JTextField getOutput() {
+        return output;
     }
 
-    public static void main(String[] args) {
-
-        JFrame frame = new JFrame("简易计算器");
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        frame.setContentPane(new CalculatorWindow().panel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 200);
-        frame.setVisible(true);
-        frame.pack();
+    public JTextField getInput() {
+        return input;
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
+    public JPanel getPane() {
+        return pane;
     }
 }
