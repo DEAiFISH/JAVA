@@ -13,7 +13,7 @@ public class FileEncryption {
         String FilePath = scanner.nextLine();
 
         long startTime = new Date().getTime();
-//        Encryption();
+        Encryption(FilePath);
 //        Decrypt();
         long endTime = new Date().getTime();
 
