@@ -1,7 +1,9 @@
 package IO;
 
 import java.io.*;
-import java.util.*;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Scanner;
 
 /**
  * 文件加解密
@@ -13,8 +15,10 @@ public class FileEncryption {
         String FilePath = scanner.nextLine();
 
         long startTime = new Date().getTime();
+        System.out.println("== 加密 ==");
         Encryption(FilePath);
-//        Decrypt();
+        System.out.println("== 解密 ==");
+        Decrypt(FilePath);
         long endTime = new Date().getTime();
 
         System.out.println("花费了：" + 1.0 * (endTime - startTime) / 1000 + "秒");
@@ -46,7 +50,7 @@ public class FileEncryption {
                 bis = new BufferedInputStream(new FileInputStream(file));
 
                 bos = new BufferedOutputStream(new FileOutputStream(file.getParent() +
-                        "/" + name.substring(3,name.length() - 3) + "mov"));
+                        "/" + name.substring(3, name.length() - 3) + "MOV"));
 
                 byte[] buf = new byte[20];
 
@@ -54,7 +58,7 @@ public class FileEncryption {
 
                 while ((len = bis.read(buf)) != -1) {
                     for (int i = 0; i < len; i++) {
-                        buf[i] = (byte) ((buf[i] - 3) ^ 5);
+                        buf[i] = (byte) (buf[i] ^ 3);
                     }
 
                     bos.write(buf, 0, len);
@@ -111,15 +115,15 @@ public class FileEncryption {
                 bis = new BufferedInputStream(new FileInputStream(file));
 
                 bos = new BufferedOutputStream(new FileOutputStream(file.getParent() +
-                        "/ENC" + name.substring(0,name.length() - 3)+ "txt"));
+                        "/ENC" + name.substring(0, name.length() - 3) + "txt"));
 
-                byte[] buf = new byte[20];
+                byte[] buf = new byte[1024];
 
                 int len;
 
                 while ((len = bis.read(buf)) != -1) {
                     for (int i = 0; i < len; i++) {
-                        buf[i] = (byte) ((buf[i] ^ 5) + 3);
+                        buf[i] = (byte) ((buf[i] ^ 3));
                     }
 
                     bos.write(buf, 0, len);
