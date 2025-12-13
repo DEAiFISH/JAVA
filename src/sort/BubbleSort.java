@@ -26,18 +26,25 @@ public class BubbleSort {
 
     }
 
-    public static int[] sort(int[] arr) {
+    public static void sort(int[] arr) {
         int len = arr.length;
-        for (int i = 1; i < len - 1; i++) {
-            for (int j = 0; j < len - i - 1; j++) {
+        for (int i = 0; i < len - 1; i++) {
+            boolean flag = true;
+            for (int j = 0; j < len - 1 - i; j++) {
                 if (arr[j] > arr[j + 1]) {
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
+                    flag = false;
                 }
             }
+            if (flag) {
+                System.out.println("没有进行交换，提前结束。共执行：" + i + "轮");
+                break;
+            }
+            System.out.println("第" + (i + 1) + "轮：" + Arrays.toString(arr));
         }
-        return arr;
+
     }
 
 }
